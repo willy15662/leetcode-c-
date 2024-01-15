@@ -1,2 +1,4 @@
 # leetcode-c-
-leetcode practice 150
+
+leetcode 練習紀錄 
+top 150面試題目
