@@ -39,3 +39,11 @@ public:
         
     }
 };
+
+
+/*或使用substr
+for (int i = 0; i <= a - b; i++) {
+            if (haystack.substr(i, b) == needle) {
+                return i;
+            }
+*/
