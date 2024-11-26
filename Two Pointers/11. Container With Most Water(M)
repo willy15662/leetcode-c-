@@ -1,1 +1,26 @@
-
+/*
+左右給一個指標，從較小那邊往內尋找面積更大的，直到左右交會
+*/
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int distance = height.size()-1;
+        int left = 0, right = height.size()-1, maxamount = 0;
+        
+        while(left < right){
+            int amount = 0;
+            if(height[left] > height[right]){
+                amount = distance * height[right];
+                if(amount > maxamount) maxamount = amount;
+                right--;
+            }
+            else{
+                amount = distance * height[left];
+                if(amount > maxamount) maxamount = amount;
+                left++;
+            }
+            distance--;
+        }
+        return maxamount;
+    }
+};
