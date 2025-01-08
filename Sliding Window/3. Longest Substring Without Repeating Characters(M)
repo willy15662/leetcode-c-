@@ -1,0 +1,47 @@
+// 設置兩指標，左和右，當沒有重複時左邊走一格，和中間所有字母比較是否重複，若無則右指標走一格，若重複，左指標走一格，右指標改為左指標+1格，直到右指標走到底
+//可用unordered_set 加速比較
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i=0 , j=1, len = s.size() , count=1, output=0;
+        if(len < 1) return len;
+        while(j < len){
+            for(int k=i;k < i+count;k++){
+                if(s[j] == s[k]){
+                    output = max(output, count);
+                    j = ++i;
+                    count = 0;
+                    break;
+                }
+            }
+            count++;
+            j++;
+        }
+        output = max(output, count);
+        return output;
+    }
+};
+
+#
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left = 0;
+        int maxLength = 0;
+        unordered_set<char> charSet;
+
+        for (int right = 0; right < s.length(); right++) {
+            while (charSet.find(s[right]) != charSet.end()) {
+                charSet.erase(s[left]);
+                left++;
+            }
+
+            charSet.insert(s[right]);
+            maxLength = max(maxLength, right - left + 1);
+        }
+
+        return maxLength;        
+    }
+};
+#
