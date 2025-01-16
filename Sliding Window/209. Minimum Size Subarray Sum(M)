@@ -1,0 +1,15 @@
+//使用sliding window 方法來找出最小長度，先依值加總又邊界，超出target後減去左邊界
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int minlen = INT_MAX, sum=0, j=0;
+        for(int i = 0; i < nums.size(); i++) {
+            sum += nums[i];
+            while(sum >= target){
+                minlen = min(minlen, i -j +1);
+                sum -= nums[j++];
+            }
+        }
+        return minlen == INT_MAX ? 0 : minlen;
+    }
+};
