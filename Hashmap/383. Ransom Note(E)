@@ -1,1 +1,16 @@
-
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<int, int> own;
+        for(auto a : magazine){
+            own[a]++;
+        }
+        for(auto b : ransomNote){
+            if (own.find(b) == own.end() || own[b]==0){
+                return false;
+            }
+            own[b]--;  
+        }
+        return true;
+    }
+};
